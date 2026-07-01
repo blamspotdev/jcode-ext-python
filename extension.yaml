@@ -1,0 +1,129 @@
+id: jcode.lang.python
+name: Python Language Pack
+publisher: jcode
+version: 0.1.0
+type: language
+description: Coloring, completions, snippets, and a basic formatter for Python.
+language:
+  id: python
+  extensions: [".py", ".pyi", ".pyw"]
+  comment:
+    line: "#"
+    blockStart: '"""'
+    blockEnd: '"""'
+  strings: ["\"", "'"]
+  keywords: [False, None, True, and, as, assert, async, await, break, class, continue,
+    def, del, elif, else, except, finally, for, from, global, if, import, in, is,
+    lambda, nonlocal, not, or, pass, raise, return, try, while, with, yield, match,
+    case, self, cls, print]
+  types: [int, float, complex, bool, str, bytes, bytearray, memoryview, list, tuple,
+    dict, set, frozenset, object, type, range, slice, Exception, BaseException,
+    ValueError, TypeError, KeyError, IndexError, AttributeError, RuntimeError,
+    StopIteration, FileNotFoundError, NotImplementedError, Optional, Union, Any,
+    List, Dict, Tuple, Set, Callable, Iterator, Iterable, Sequence, Mapping,
+    Awaitable, Coroutine]
+  formatter:
+    # Best-effort runtime formatter (runs in the embedded distro). {{file}} is the
+    # guest path. Falls back to the basic rules below when no toolchain is present.
+    command: "black {{file}} 2>/dev/null || autopep8 -i {{file}} 2>/dev/null || true"
+    indent: 4
+    trimTrailingWhitespace: true
+    insertFinalNewline: true
+  completions:
+    - label: def
+      detail: Function
+      insert: "def $1($2):\n    $0"
+    - label: adef
+      detail: Async function
+      insert: "async def $1($2):\n    $0"
+    - label: cls
+      detail: Class
+      insert: "class $1:\n    def __init__(self$2):\n        $0"
+    - label: dcls
+      detail: Dataclass
+      insert: "@dataclass\nclass $1:\n    $0"
+    - label: main
+      detail: __main__ guard
+      insert: "if __name__ == \"__main__\":\n    $0"
+    - label: forr
+      detail: for loop
+      insert: "for $1 in $2:\n    $0"
+    - label: fore
+      detail: for enumerate
+      insert: "for i, $1 in enumerate($2):\n    $0"
+    - label: whilee
+      detail: while loop
+      insert: "while $1:\n    $0"
+    - label: ifn
+      detail: if block
+      insert: "if $1:\n    $0"
+    - label: elifn
+      detail: elif block
+      insert: "elif $1:\n    $0"
+    - label: try
+      detail: try / except
+      insert: "try:\n    $1\nexcept $2:\n    $0"
+    - label: withh
+      detail: with statement
+      insert: "with $1 as $2:\n    $0"
+    - label: lam
+      detail: lambda
+      insert: "lambda $1: $0"
+    - label: lc
+      detail: List comprehension
+      insert: "[$1 for $2 in $3]"
+    - label: dc
+      detail: Dict comprehension
+      insert: "{$1: $2 for $3 in $4}"
+    - label: impf
+      detail: from ... import
+      insert: "from $1 import $0"
+    - label: prn
+      detail: Print
+      insert: "print($0)"
+    - label: prop
+      detail: Property
+      insert: "@property\ndef $1(self):\n    return self._$0"
+  helpers:
+    - title: __main__ guard
+      snippet: |
+        def main():
+            $0
+
+        if __name__ == "__main__":
+            main()
+    - title: Dataclass
+      snippet: |
+        from dataclasses import dataclass
+
+
+        @dataclass
+        class $1:
+            $2: $3
+    - title: Async entry point (asyncio.run)
+      snippet: |
+        import asyncio
+
+
+        async def main():
+            $0
+
+
+        if __name__ == "__main__":
+            asyncio.run(main())
+    - title: pytest test
+      snippet: |
+        def test_$1():
+            $0
+            assert True
+    - title: Context manager (contextlib)
+      snippet: |
+        from contextlib import contextmanager
+
+
+        @contextmanager
+        def $1():
+            try:
+                yield $0
+            finally:
+                pass

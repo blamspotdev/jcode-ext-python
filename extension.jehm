@@ -1,0 +1,40 @@
+---
+schema: 1
+uniqueName: jcode.lang.python
+name: Python Language Pack
+version: 0.1.0
+type: language
+publisher: jcode
+authors: [jcode]
+shortDescription: Coloring, completions, snippets, and a basic formatter for Python.
+minJCodeVersion: 1.0.0
+targetJCodeVersion: 1.0.0
+category: Languages
+subcategory: Python
+requires:
+  sdks: []
+  lsps: []
+  extensions: []
+suggests:
+  sdks: [python]
+  lsps: [pyright]
+  extensions: []
+images:
+  icon: null
+  samples: []
+  walkthrough: []
+entry:
+  manifest: extension.yaml
+  ui: null
+  libs: []
+fingerprint: { algo: sha256, value: null }
+---
+
+# Python Language Pack
+
+Syntax coloring and keyword/builtin highlighting, as-you-type completions with
+snippet helpers, and a best-effort formatter (`black`/`autopep8`, run inside the
+embedded distro) for Python `.py` and `.pyi` files. Everything works offline out
+of the box; install the **Python tooling** SDK for `black`, and a Python language
+server (e.g. `pyright`) for richer analysis. See `extension.yaml` for the full
+functional manifest.
