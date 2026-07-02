@@ -2,7 +2,7 @@
 schema: 1
 uniqueName: jcode.lang.python
 name: Python Language Pack
-version: 0.1.0
+version: 0.1.1
 type: language
 publisher: jcode
 authors: [jcode]
@@ -20,7 +20,7 @@ suggests:
   lsps: [pyright]
   extensions: []
 images:
-  icon: null
+  icon: media/icon.png
   samples: []
   walkthrough: []
 entry:
