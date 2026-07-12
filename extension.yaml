@@ -3,6 +3,11 @@ name: Python Language Pack
 publisher: jcode
 version: 0.2.0
 type: language
+requires:
+  lsps: [pyright]
+  sdks: [python]
+suggests:
+  dbg: [debugpy]
 description: Coloring, completions, snippets, a basic formatter, and project templates for Python.
 templates:
   - fastapi-app
