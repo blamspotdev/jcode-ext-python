@@ -1,12 +1,55 @@
 id: jcode.lang.python
 name: Python Language Pack
 publisher: jcode
-version: 0.2.0
+version: 0.2.2
 type: language
+requires:
+  lsps: [pyright]
+  sdks: [python]
+suggests:
+  dbg: [debugpy]
 description: Coloring, completions, snippets, a basic formatter, and project templates for Python.
 templates:
   - fastapi-app
   - flask-app
+contributes:
+  # Run presets offered on the Configure Run page when the project contains ALL of `requires`
+  # (globs). {{projectDir}} = project guest root; {{file}}/{{dir}} = the first required file's
+  # guest path/dir; {{fileN}}/{{dirN}} = each requires glob's first match.
+  runConfigPresets:
+    - id: flask-dev
+      label: Flask dev server
+      requires: [app.py]
+      readyPort: 5000
+      terminals:
+        - label: Flask
+          command: |
+            clear
+            set -e
+            cd "{{dir}}"
+            [ -f requirements.txt ] && pip3 install -r requirements.txt
+            python3 -m flask --app app.py run --host 0.0.0.0 --port 5000
+    - id: django-dev
+      label: Django dev server
+      requires: [manage.py]
+      readyPort: 8000
+      terminals:
+        - label: Django
+          command: |
+            clear
+            set -e
+            cd "{{dir}}"
+            [ -f requirements.txt ] && pip3 install -r requirements.txt
+            python3 manage.py runserver 0.0.0.0:8000
+    - id: python-main
+      label: Python script
+      requires: [main.py]
+      terminals:
+        - label: Python
+          command: |
+            clear
+            cd "{{dir}}"
+            python3 main.py
 language:
   id: python
   extensions: [".py", ".pyi", ".pyw"]
