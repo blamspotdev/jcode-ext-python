@@ -1,7 +1,7 @@
 id: jcode.lang.python
-name: Python Language Pack
+name: Python Dev Pack
 publisher: jcode
-version: 0.2.2
+version: 0.2.3
 type: language
 requires:
   lsps: [pyright]

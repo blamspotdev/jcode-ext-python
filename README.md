@@ -1,4 +1,4 @@
-# Python Language Pack
+# Python Dev Pack
 
 A JCode language pack for **Python** (`.py`, `.pyi`, `.pyw`).
 
@@ -17,7 +17,7 @@ SDK Manager; for richer analysis, install a Python language server such as
 
 ## Install
 
-Browse the JCode marketplace and install **Python Language Pack**, or build it
+Browse the JCode marketplace and install **Python Dev Pack**, or build it
 locally with [`jext`](https://github.com/blamspotdev/j-code-make-tools):
 
 ```bash
