@@ -1,0 +1,6 @@
+id: python-main
+label: Python script
+requires: [main.py]
+terminals:
+  - label: Python
+    script: python.sh

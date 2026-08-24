@@ -1,0 +1,7 @@
+id: flask-dev
+label: Flask dev server
+requires: [app.py]
+readyPort: 5000
+terminals:
+  - label: Flask
+    script: flask.sh

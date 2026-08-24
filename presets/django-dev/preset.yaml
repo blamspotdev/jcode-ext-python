@@ -1,0 +1,7 @@
+id: django-dev
+label: Django dev server
+requires: [manage.py]
+readyPort: 8000
+terminals:
+  - label: Django
+    script: django.sh
